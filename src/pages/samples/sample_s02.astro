@@ -1,0 +1,164 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<style lang="scss">
+    // 色演算を使用するために @useを使用して
+    // sass:color を読み込む sass:color ->「色を操作するための関数セット」
+    // 読み込んだあとは color.関数名 で色演算することが可能
+
+    @use "sass:color";
+
+    /* =========================
+    共通設定
+========================= */
+    // ページ内で使用する変数の場合はここに記載
+    $base-color: #3498db;
+    // 全体で使用する変数の場合は _vars.scssに記載
+    $base-color2: var.$sample_s02_baseColor;
+    /* デバッグ出力　@debugで結果のコードを確認する */
+    @debug $base-color;
+    .sampleContent {
+        .box {
+            padding: 16px;
+            margin-top: 12px;
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        /* =========================
+    case01
+    ・@use
+    ・@debug
+    ・基本的な色演算
+    ========================= */
+        .case01 {
+            /* スタイル */
+            .box {
+                background-color: $base-color;
+                &--dark {
+                    background-color: color.adjust(
+                        $base-color,
+                        $lightness: -10%
+                    );
+                }
+            }
+        }
+
+        /* =========================
+        case02
+        color.adjust()
+        → 絶対値で調整
+    ========================= */
+        .case02 {
+            .box {
+                background-color: $base-color2;
+
+                &--light {
+                    background-color: color.adjust(
+                        $base-color2,
+                        $saturation: 20%
+                    );
+                }
+
+                &--saturation {
+                    background-color: color.adjust(
+                        $base-color2,
+                        $hue: 180deg,
+                        $saturation: 50%
+                    );
+                }
+            }
+        }
+
+        /* =========================
+        case03
+        color.scale()
+        → 相対的に調整（推奨）
+    ========================= */
+        .case03 {
+            .box {
+                background-color: $base-color2;
+
+                &--dark {
+                    &:hover {
+                        background-color: color.scale(
+                            $base-color2,
+                            $lightness: -20%
+                        );
+                    }
+                }
+
+                &--light {
+                    &:hover {
+                        background-color: color.scale(
+                            $base-color2,
+                            $lightness: 20%
+                        );
+                    }
+                }
+            }
+        }
+
+        /* =========================
+        case04
+        color.change()
+        → 値を直接上書き
+    ========================= */
+        .case04 {
+            .box {
+                background-color: $base-color2;
+
+                &--custom {
+                    background-color: color.change(
+                        $base-color2,
+                        $red: 200,
+                        $blue: 0,
+                        $green: 0
+                    );
+                }
+            }
+        }
+    }
+</style>
+
+<Layout pageTitle="Sample_s02 - Sassの色演算">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_s02 - 色演算の使用方法</h2>
+            <p>Sass内の色演算を実施する</p>
+        </section>
+
+        <div class="sampleContent">
+            <!-- case01 -->
+            <section class="content case01">
+                <h3>case01 Sass 基本（@use / @debug）</h3>
+                <div class="box">base color</div>
+                <div class="box box--dark">base color</div>
+            </section>
+
+            <!-- case02 -->
+            <section class="content case02">
+                <h3>case02 color.adjust()</h3>
+                <div class="box">base</div>
+                <div class="box box--light">light +20%</div>
+                <div class="box box--saturation">saturation -30%</div>
+            </section>
+
+            <!-- case03 -->
+            <section class="content case03">
+                <h3>case03 color.scale()</h3>
+                <div class="box">base</div>
+                <div class="box box--dark">dark -20%</div>
+                <div class="box box--light">light +20%</div>
+            </section>
+
+            <!-- case04 -->
+            <section class="content case04">
+                <h3>case04 color.change()</h3>
+                <div class="box">base</div>
+                <div class="box box--custom">add red</div>
+            </section>
+        </div>
+    </main>
+</Layout>

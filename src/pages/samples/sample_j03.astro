@@ -1,0 +1,72 @@
+---
+import { date } from "astro:schema";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout pageTitle="Sample_j03 - DOM操作 カスタムデータ属性">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_j03 - DOM操作 カスタムデータ属性</h2>
+            <p>カスタムデータ属性を使用してDOMの操作を行う</p>
+        </section>
+
+        <div class="sampleContent">
+            <section class="content case01">
+                <h3>case01 カスタムデータ属性</h3>
+                <p>
+                    下記要素にカスタムデータ属性を設定しJavaScriptで操作してみましょう
+                </p>
+                <!-- case1 data-categoryを設定する -->
+                <div class="box" data-category="astro">Astro</div>
+                <div class="box" data-category="sass">Sass</div>
+                <div class="box" data-category="js">JavaScript</div>
+                <!-- case2 設定したカスタムデータ属性を取得する  -->
+
+                <div class="result">ここに結果を出力する</div>
+            </section>
+        </div>
+    </main>
+</Layout>
+
+<script is:inline>
+    // case02 要素の取得 .box .resultをそれぞれ取得
+    const boxes = document.querySelectorAll(".case01 .box");
+    const result = document.querySelector(".case01 .result");
+    // data-categoryの値を確認する
+    console.log(boxes[0].dateset.category);
+
+    // クリックした要素のdata-categoryを結果（result）へ表示
+    boxes.forEach((box) => {
+        box.addEventListener("click", () => {
+            result.textContent = box.dateset.category;
+            console.log("click");
+        });
+        console.log(box);
+    });
+</script>
+<style lang="scss">
+    .case01 {
+        .box {
+            color: #333;
+            font-weight: bold;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .box[data-category="astro"] {
+            color: #fff;
+            background-color: var.$color-astro;
+        }
+        .box[data-category="sass"] {
+            color: #fff;
+            background-color: var.$color-sass;
+        }
+        .box[data-category="js"] {
+            color: #fff;
+            background-color: var.$color-js;
+        }
+        .result {
+            border: solid 1px #666;
+            padding: 0.5rem;
+        }
+    }
+</style>

@@ -1,0 +1,95 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout pageTitle="sample_s03 - Sassの再利用1 @extend">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_s03 - @extend</h2>
+            <p>Sassの@extendを使ってスタイルの上書きを行う</p>
+        </section>
+
+        <div class="sampleContent">
+            <!-- case01 -->
+            <section class="content case01">
+                <h3>case01 extend 基本</h3>
+                <div class="case-wrap">
+                    <button class="btn">button</button>
+                    <button class="btn-primary">primary</button>
+                    <button class="btn-primary-l">primary</button>
+                </div>
+            </section>
+
+            <!-- case02 -->
+            <section class="content case02">
+                <h3>case02 プレースホルダー</h3>
+                <div class="case-wrap">
+                    <button class="btn">button</button>
+                    <button class="btn-primary">primary</button>
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+<style lang="scss">
+    .sampleContent {
+        .box {
+            padding: 16px;
+            margin-top: 12px;
+            border-radius: 6px;
+            color: #fff;
+        }
+
+        /* =========================
+        case01
+        基本のextend
+    ========================= */
+        .case-wrap {
+            display: flex;
+            gap: 2rem;
+        }
+        .case01 {
+            .btn {
+                padding: 8px 16px;
+                border-radius: 4px;
+                border: 1px solid #bebebe;
+                background-color: #efefef;
+            }
+
+            .btn-primary {
+                @extend .btn;
+                background-color: skyblue;
+                border: #026cb3;
+                color: #fff;
+            }
+            .btn-primary-l {
+                @extend.btn-primary;
+                width: 100px;
+            }
+        }
+
+        /* =========================
+        case02
+        プレースホルダー
+    ========================= */
+        .case02 {
+            // プレースホルダーセレクター btn-base の作成
+            %btn-base {
+                padding: 8px 16px;
+                border-radius: 4px;
+                border: 1px solid #bebebe;
+                background-color: #efefef;
+                &:hover {
+                    transition: 0.8s;
+                    background-color: #026cb3;
+                }
+            }
+            .btn {
+                @extend %btn-base;
+            }
+
+            .btn-primary {
+            }
+        }
+    }
+</style>

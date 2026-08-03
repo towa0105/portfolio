@@ -1,0 +1,211 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main>
+        <div class="tittle">
+            <h1>Contact</h1>
+            <p>お問い合わせは下記フォームにて送信ください</p>
+        </div>
+        <div class="wrap">
+            <div class="name_wrap">
+                <div class="text">
+                    <label for="name">お名前</label>
+                    <span class="required">必須</span>
+                </div>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="やまも由伸"
+                />
+            </div>
+            <div class="email_wrap">
+                <div class="text">
+                    <label for="email">メールアドレス</label>
+                    <span class="error">入力エラー</span>
+                </div>
+                <div class="email_textwrap">
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="hosokawa@gmail"
+                    />
+                    <p class="msg_text">メールアドレスが正しくありません。</p>
+                </div>
+            </div>
+            <div class="content_wrap">
+                <div class="text"><label for="content">内容</label></div>
+                <textarea name="content" id="content"></textarea>
+            </div>
+            <div class="btn_wrap">
+                <input type="button" class="correctionBtn" value="訂正" />
+                <input type="button" class="confirmation" value="確認" />
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style lang="scss">
+    @use "sass:color";
+    $main-color: #395dea;
+    %input-base {
+        border: solid 1px #aaa;
+        border-radius: 8px;
+        padding: 0.8rem;
+        font-size: 1.6rem;
+        width: 100%;
+    }
+    %message-base {
+        padding: 0.4rem;
+        letter-spacing: 0.1rem;
+        font-size: 1.2rem;
+    }
+    %btn-base {
+        background-color: #aaa;
+        color: #fff;
+        font-size: 1.4rem;
+        padding: 1rem;
+        border-radius: 4px;
+        width: 240px;
+        &:hover {
+            background-color: #bbb;
+        }
+    }
+
+    label {
+        font-size: 16px;
+    }
+    .tittle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrap {
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+
+        flex-direction: column;
+        max-width: 1000px;
+        // min-width: 585px;
+        margin: 20px auto;
+    }
+    .name_wrap {
+        align-items: center;
+        display: flex;
+        padding: 20px;
+    }
+    .email_textwrap {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        p {
+            color: #b53939;
+        }
+    }
+    .email_wrap {
+        align-items: center;
+        display: flex;
+        padding: 20px;
+    }
+    .text {
+        width: 240px;
+        display: flex;
+        flex-shrink: 0;
+        gap: 10px;
+        align-items: center;
+    }
+    .content_wrap {
+        display: flex;
+        padding: 20px;
+    }
+
+    #name {
+        @extend %input-base;
+    }
+    #email {
+        @extend %input-base;
+    }
+    #content {
+        @extend %input-base;
+        height: 240px;
+    }
+
+    span {
+        @extend %message-base;
+    }
+    .required {
+        border: solid 1px #b53939;
+        color: #b53939;
+    }
+    .error {
+        background-color: #b53939;
+        color: #fff;
+    }
+    .btn_wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: center;
+        align-items: center;
+        .correctionBtn {
+            @extend %btn-base;
+        }
+        .confirmation {
+            @extend %btn-base;
+            background-color: $main-color;
+            &:hover {
+                background-color: color.adjust($main-color, $lightness: -10%);
+            }
+        }
+    }
+    // @include mixin.responsiveSp;
+    // @include mixin.responsiveMd;
+    @include mixin.responsiveSp {
+        .name_wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 1rem;
+        }
+        .email_wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .content_wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 1rem;
+        }
+        @include mixin.responsiveMd {
+            .name_wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+            .email_wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+
+            .content_wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+        }
+    }
+</style>

@@ -1,0 +1,34 @@
+---
+import Image from "astro/components/Image.astro";
+import thumbNoImage from "../assets/sample05_noimage.jpg";
+import Sample from "./sample.astro";
+// import { samples } from "../scripts/sample_date";
+import { description } from "../const";
+const tags = ["astro", "sass", "js"];
+const { samples } = Astro.props;
+console.log(samples);
+---
+
+{
+    samples.map((sample: any) => {
+        return (
+            <Sample
+                title={sample.title}
+                description={sample.description}
+                tag={sample.tag}
+                pageURL={sample.pageURL}
+            />
+        );
+    })
+}
+<style lang="scss">
+    .thumb.is-hidden {
+        display: none;
+    }
+</style>
+<!-- <Sample
+    title="sample01 - Astroページの作成"
+    description="Astroをインストールし、ページをはじめて作成したもの"
+    tag="astro"
+    pageURL="/samples/sample01/"
+/> -->

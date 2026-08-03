@@ -1,0 +1,152 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const members = [
+    { name: "瀧本", age: 18, job: "Webデザイナー" },
+    { name: "桃井", age: 20, job: "プロデューサー" },
+    { name: "田中", age: 22, job: "グラフィックデザイナー" },
+    { name: "坂倉", age: 25, job: "Webエンジニア" },
+    { name: "宮崎", age: 30, job: "カメラマン" },
+    { name: "武田", age: 24, job: "コピーライター" },
+];
+---
+
+<Layout pageTitle="Sample_j02 - 複数データとDOM操作">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_j02 - 複数データとDOM操作</h2>
+            <p>複数データを扱って、DOMの操作を実施する</p>
+        </section>
+
+        <div class="sampleContent">
+            <section class="content">
+                <h3>case01 配列の作成とforEach</h3>
+                <p>下記を配列に作成してみましょう</p>
+                <ul>
+                    <li>Photoshop</li>
+                    <li>Illustrator</li>
+                    <li>Premiere</li>
+                    <li>After Effects</li>
+                    <li>VS Code</li>
+                </ul>
+            </section>
+            <section class="content">
+                <h3>case02 オブジェクト配列データ</h3>
+                <p>
+                    配列番号とは別に、添え字をつけてデータを入れる場合
+                    オブジェクト配列で作成します
+                </p>
+                <h4>members配列を作成し、下記データを作成してみましょう</h4>
+            </section>
+            <section class="content">
+                <h3>case03 データをHTMLに入れる</h3>
+                <p>作成したメンバーのデータをHTMLへ出力しましょう</p>
+                <div class="case03">
+                    {
+                        members.map((member) => (
+                            <div class="member">
+                                <p class="member__name">名前：{member.name}</p>
+                                <p class="member__age">年齢：{member.age}</p>
+                                <p class="member__job">職業：{member.job}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+<style lang="scss">
+    // :global(.member) {
+    //     padding: 1rem;
+    // }
+
+    // :global(.member__name) {
+    //     border-bottom: dotted 1px #bababa;
+    // }
+
+    // :global(.member__age) {
+    //     font-weight: bold;
+    // }
+
+    // :global(.member__job) {
+    //     color: #148683;
+    // }
+    .code {
+        border: solid 1px #eaeaea;
+        padding: 1rem;
+        margin: 2rem 0;
+    }
+    .noteWrap {
+        margin: 2rem 0;
+        ul {
+            list-style: disc;
+            margin-left: 4rem;
+        }
+    }
+
+    .case03 {
+        border: solid 1px #bababa;
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        .member {
+            padding: 1rem;
+            &__name {
+                border-bottom: dotted 1px #bababa;
+            }
+            &__age {
+                font-weight: bold;
+            }
+            &__job {
+                color: #148683;
+            }
+        }
+    }
+</style>
+
+<script is:inline>
+    const apps = [
+        "Photoshop",
+        "Illustrator",
+        "Premiere",
+        "After Effects",
+        "VS Code",
+    ];
+
+    apps.forEach((app) => {
+        console.log(app);
+    });
+    const fruit = {
+        name: "りんご",
+        price: 120,
+        area: "青森県",
+    };
+    // const members = [
+    //     { name: "瀧本", age: 18, job: "Webデザイナー" },
+    //     { name: "桃井", age: 20, job: "プロデューサー" },
+    //     { name: "田中", age: 22, job: "グラフィックデザイナー" },
+    //     { name: "坂倉", age: 25, job: "Webエンジニア" },
+    //     { name: "宮崎", age: 30, job: "カメラマン" },
+    //     { name: "武田", age: 24, job: "コピーライター" },
+    // ];
+    // console.log(apps[0]);
+    // console.log(fruit.area);
+    // console.log(members[1].job);
+    // const membersWrap = document.querySelector(".case03");
+
+    // members.forEach((member) => {
+    //     console.log(member);
+    //     const memberDate = `
+    //         <div class="member">
+    //             <p class="member__name">名前：${member.name}</p>
+    //             <p class="member__age">年齢：${member.age}</p>
+    //             <p class="member__job">職業：${member.job}</p>
+    //         </div>
+    //     `;
+
+    //     membersWrap.insertAdjacentHTML("beforeend", memberDate);
+    // });
+</script>

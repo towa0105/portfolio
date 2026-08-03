@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout pageTitle="sample_s04 - Sassの再利用2 @mixin">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_s04 - @mixin</h2>
+            <p>Sassの@mixinを使ってスタイルの上書きを行う</p>
+        </section>
+
+        <div class="sampleContent">
+            <!-- case01 -->
+            <section class="content case01">
+                <h3>case01 mixin の使用</h3>
+                <div class="case-wrap">
+                    <p class="case01__title">
+                        mixinを使ってテキストカラーを変更する
+                    </p>
+                    <p class="case01__title">
+                        mixinを使ってテキストカラーを変更する
+                    </p>
+                </div>
+            </section>
+
+            <!-- case02 -->
+            <section class="content case02">
+                <h3>case02 引数の使用</h3>
+                <div class="case-wrap">
+                    <p class="case02__title">
+                        引数を使ってカラー値をそれぞれ変更する
+                    </p>
+                    <p class="case02__title case02__title--primary">
+                        引数を使ってカラー値をそれぞれ変更する
+                    </p>
+                </div>
+            </section>
+
+            <!-- case03 -->
+            <section class="content case03">
+                <h3>case03 引数に初期値を設定する</h3>
+                <div class="case-wrap">
+                    <section class="case03__wrap">
+                        <h2 class="case03__title">サンプル小見出し</h2>
+                        <p class="case03__text">
+                            青年はさっと顔いろが青ざめて、どこかぐあいが悪いようにそろそろと出て来てジョバンニに渡しながら、またさっきの方へ急ぐのでした。ぼくお父さんはきっとまもなく、みんなはてんでに口笛を吹きながら一生けん命延びあがって、その天の川の水や、三角点の青じろい微光の中を見まわすとして、黒い脚をちぢめて、浮彫りのように、しずかによこたわったのです。けれどもいつともなく三〇六番の讃美歌のふしが聞こえて来るのをききました。
+                        </p>
+                    </section>
+                    <section class="case03__wrap">
+                        <h2 class="case03__title">サンプル小見出し</h2>
+                        <p class="case03__text">
+                            青年はさっと顔いろが青ざめて、どこかぐあいが悪いようにそろそろと出て来てジョバンニに渡しながら、またさっきの方へ急ぐのでした。ぼくお父さんはきっとまもなく、みんなはてんでに口笛を吹きながら一生けん命延びあがって、その天の川の水や、三角点の青じろい微光の中を見まわすとして、黒い脚をちぢめて、浮彫りのように、しずかによこたわったのです。けれどもいつともなく三〇六番の讃美歌のふしが聞こえて来るのをききました。
+                        </p>
+                    </section>
+                    <section class="case03__wrap">
+                        <h2 class="case03__title">サンプル小見出し</h2>
+                        <p class="case03__text">
+                            青年はさっと顔いろが青ざめて、どこかぐあいが悪いようにそろそろと出て来てジョバンニに渡しながら、またさっきの方へ急ぐのでした。ぼくお父さんはきっとまもなく、みんなはてんでに口笛を吹きながら一生けん命延びあがって、その天の川の水や、三角点の青じろい微光の中を見まわすとして、黒い脚をちぢめて、浮彫りのように、しずかによこたわったのです。けれどもいつともなく三〇六番の讃美歌のふしが聞こえて来るのをききました。
+                        </p>
+                    </section>
+                </div>
+            </section>
+
+            <!-- case04 -->
+            <section class="content case04">
+                <h3>case04 contentの引渡し</h3>
+                <p>@contentを使ってセレクタの引渡しを行う</p>
+                <div class="case-wrap">
+                    <ul>
+                        <li class="case04__list">リスト項目</li>
+                        <li class="case04__list">リスト項目</li>
+                        <li class="case04__list">リスト項目</li>
+                        <li class="case04__list">リスト項目</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+<style lang="scss">
+    @mixin textColor {
+        color: tomato;
+        font-size: 1.8rem;
+    }
+
+    @mixin tittleColor($color: #999) {
+        color: $color;
+        font-size: 1.8rem;
+    }
+    .case01 {
+        // case01__titleにmixnを使って文字色の設定を行う
+        // mixin名 textColor は _mixinファイルに記載して読み込む
+        // 今あるスタイルをmixin textColorへ移してスタイルが設定されているか確認
+        &__title {
+            @include textColor;
+        }
+    }
+    .case02 {
+        // case02__title , case02__title--primary
+        // 引数を設定してスタイルを変更してみましょう
+        // mixn titleColor を作成し、文字色を引数に設定しましょう
+        &__title {
+            @include tittleColor(tomato);
+            &--primary {
+                @include tittleColor(skyblue);
+            }
+        }
+    }
+    .case03 {
+        &__title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            border-bottom: solid 1px #bababa;
+        }
+        &__text {
+            font-size: 1.8rem;
+        }
+        // mixinに初期値を設定し、ベーススタイルと変化がつけられるように
+        // 変更してみましょう
+        // mixin flexを作成し、配置とgapの引数を設定する
+
+        .case-wrap {
+            // @include tittleColor();
+            @include mixin.flex($gap: 2rem);
+        }
+    }
+
+    .case04 {
+        // @contentを使ってセレクタの登録を行う
+        // 偶数奇数のセレクタをmixin化して、使用する
+        // mixin oddLine , evenLine を作成して セレクタを受け渡す
+        // 🥷1つのmixin でも偶奇設定は実現できる
+        &__list {
+            @include mixin.lineEven {
+                background-color: tomato;
+            }
+            @include mixin.lineOdd {
+                background-color: skyblue;
+            }
+
+            // &:nth-child(even) {
+            //     background-color: tomato;
+            // }
+            // &:nth-child(odd) {
+            //     background-color: skyblue;
+            // }
+        }
+    }
+</style>

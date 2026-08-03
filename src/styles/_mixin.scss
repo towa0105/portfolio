@@ -1,0 +1,87 @@
+@use "vars" as var;
+
+
+@mixin flex($gap: 1rem, $direction: row) {
+    display: flex;
+    gap: $gap;
+    flex-direction: $direction;
+}
+
+@mixin lineEven() {
+    &:nth-child(even) {
+        @content;
+    }
+}
+
+@mixin lineOdd() {
+    &:nth-child(odd) {
+        @content;
+    }
+}
+
+@mixin astroColor($color: #e60076, $border: solid 1px) {
+    color: $color;
+    border: $border ;
+}
+
+@mixin astroHover($background-color: #e60076) {
+    color: #fff;
+    text-decoration: none;
+    background-color: $background-color;
+}
+
+@mixin sassColor($color: #00a6f4, $border: solid 1px) {
+    color: $color;
+    border: $border ;
+}
+
+@mixin sassHover($background-color: #00a6f4) {
+    color: #fff;
+    text-decoration: none;
+    background-color: $background-color;
+
+}
+
+@mixin jsColor($color: #ff8903, $border: solid 1px) {
+    color: $color;
+    border: $border ;
+}
+
+@mixin jsHover($background-color: #ff8903) {
+    color: #fff;
+    text-decoration: none;
+    background-color: $background-color;
+
+}
+
+@mixin responsiveSp {
+    @media screen and (max-width: #{var.$sp}) {
+        @content;
+    }
+}
+
+@mixin responsiveMd {
+    @media screen and (max-width: #{var.$md}) {
+        @content;
+    }
+}
+
+@mixin responsiveLg {
+    @media screen and (max-width: #{var.$lg}) {
+        @content;
+    }
+}
+
+// sample filter button mixin
+@mixin filterBtn($color: #444) {
+    padding: 0.4rem 0.8rem;
+    border: solid 1px $color;
+    border-radius: 4px;
+    transition: 0.3s;
+
+    &:hover {
+        color: #FFF;
+        text-decoration: none;
+        background-color: $color;
+    }
+}

@@ -1,0 +1,45 @@
+---
+import { lang, title, description, x_name } from "../const.js";
+import "ress";
+import "../styles/style.scss";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const {
+    pageTitle = "Home",
+    pageDescription = description,
+} = Astro.props;
+
+const documentTitle = pageTitle === "Home" ? title : `${pageTitle} | ${title}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="description" content={pageDescription} />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#0b075d" />
+        <title>{documentTitle}</title>
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content={`@${x_name}`} />
+        <meta property="og:site_name" content={title} />
+        <meta property="og:title" content={documentTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+    </head>
+    <body>
+        <Header />
+        <slot />
+        <Footer />
+    </body>
+</html>

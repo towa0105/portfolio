@@ -1,0 +1,120 @@
+---
+import Image from "astro/components/Image.astro";
+import thumbNoImage from "../assets/sample05_noimage.jpg";
+const { title, description, tag, pageURL } = Astro.props;
+// const
+console.log(tag);
+---
+
+<article class="thumb" data-category={tag}>
+    <a href={pageURL} data-test={title}>
+        <picture class="thumb__image">
+            <Image src={thumbNoImage} alt="No Image" />
+        </picture>
+    </a>
+    <div class="thumb__body">
+        <a href={pageURL} class="thumb__link">
+            <h3>{title}</h3>
+            <p>{description}</p>
+        </a>
+        <div class="thumb__tags">
+            <span class="thumb__tag" data-tag={tag}><a href="">{tag}</a></span>
+        </div>
+    </div>
+</article>
+<!-- <article class="thumb">
+    <a href={pageURL}>
+        <picture class="thumb__image">
+            <Image src={thumbNoImage} alt="No Image" />
+        </picture>
+    </a>
+    <div class="thumb__body">
+        <a href="samples/sample01" class="thumb__link">
+            <h3>{title}</h3>
+            <p>{description}</p>
+        </a>
+        <div class="thumb__tags">
+            <span class="thumb__tag" data-tag={tag}><a href="">{tag}</a></span>
+            <span class="thumb__tag" data-tag="sass"><a href="">Sass</a></span>
+            <span class="thumb__tag" data-tag="js"><a href="">Js</a></span> -->
+<!-- </div>
+    </div>
+</article> -->
+
+<style lang="scss">
+    @use "sass:color";
+    // @debug $color-astro;
+    .thumb {
+        &__image {
+            display: block;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            img {
+                border-radius: 8px;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                display: block;
+                transition: opacity 0.3s;
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.7;
+                }
+            }
+        }
+        &__body {
+            display: grid;
+            h3 {
+                font-size: 1.6rem;
+            }
+            p {
+                font-size: 1.2rem;
+                margin-top: 1rem;
+            }
+        }
+        &__link {
+            margin-top: 1rem;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        &__tags {
+            margin: 16px 0;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+        &__tag {
+            color: #999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a {
+                padding: 0.4rem 1rem;
+                width: 100%;
+                line-height: 1;
+                transition: 0.3s;
+                border-radius: 4px;
+            }
+            &[data-tag="astro"] > a {
+                @include mixin.astroColor(var.$color-astro);
+                &:hover {
+                    @include mixin.astroHover(var.$color-astro);
+                }
+            }
+            &[data-tag="sass"] > a {
+                @include mixin.sassColor(var.$color-astro);
+                &:hover {
+                    @include mixin.sassHover(var.$color-astro);
+                }
+            }
+
+            &[data-tag="js"] > a {
+                @include mixin.jsColor(var.$color-astro);
+                &:hover {
+                    @include mixin.jsHover(var.$color-astro);
+                }
+            }
+        }
+    }
+</style>

@@ -1,0 +1,93 @@
+---
+import { x_name } from "../const";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div>
+            <p class="site-footer__brand">HOSOKAWA TOWA</p>
+            <p class="site-footer__caption">UI / UX, WEB, GRAPHIC DESIGN</p>
+        </div>
+        <div class="site-footer__aside">
+            <a href={`https://github.com/${x_name}`} target="_blank" rel="noreferrer">
+                GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <p><small>&copy; {year} HOSOKAWA TOWA</small></p>
+        </div>
+    </div>
+</footer>
+
+<style lang="scss">
+    .site-footer {
+        padding: 4.8rem 2.4rem;
+        color: #fff;
+        background: #0b075d;
+        border-top: 1px solid rgb(255 255 255 / 16%);
+
+        &__inner {
+            display: flex;
+            width: min(100%, 120rem);
+            margin-inline: auto;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 3.2rem;
+        }
+
+        &__brand {
+            font-size: clamp(2rem, 3vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        &__caption {
+            margin-top: 0.6rem;
+            color: rgb(255 255 255 / 52%);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+        }
+
+        &__aside {
+            display: grid;
+            gap: 1.4rem;
+            justify-items: end;
+
+            a {
+                padding-bottom: 0.4rem;
+                border-bottom: 1px solid rgb(255 255 255 / 50%);
+                font-size: 1.2rem;
+                font-weight: 700;
+                line-height: 1.4;
+
+                &:link,
+                &:visited,
+                &:hover {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+            small {
+                color: rgb(255 255 255 / 52%);
+                font-size: 1rem;
+                letter-spacing: 0.08em;
+            }
+        }
+    }
+
+    @media (max-width: 640px) {
+        .site-footer {
+            padding-inline: 1.6rem;
+
+            &__inner {
+                display: grid;
+            }
+
+            &__aside {
+                justify-items: start;
+            }
+        }
+    }
+</style>

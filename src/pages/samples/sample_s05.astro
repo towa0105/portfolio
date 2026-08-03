@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout pageTitle="sample_s05 - メディアクエリ @media">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_s05 - @media</h2>
+            <p>@mediaを使用して、解像度に合わせてスタイルを設定する</p>
+        </section>
+
+        <div class="sampleContent">
+            <!-- case01 -->
+            <section class="content case01">
+                <h3>
+                    case01
+                    @mediaを使用して解像度（800pxを基準に背景色を変更する）
+                </h3>
+                <div class="case-wrap">
+                    <h2 class="case01__title"></h2>
+                    <p class="case01__text">
+                        ブラウザサイズが800pxより小さくなると、背景色がつく
+                    </p>
+                </div>
+            </section>
+
+            <!-- case02 -->
+            <section class="content case02">
+                <h3>case02 サイズに合わせて文字サイズを自動調整する crump()</h3>
+                <div class="case02__flex">
+                    <div class="case02__wrap">
+                        <h2 class="case02__title">
+                            小見出し2.4rem〜3.2remまで可変されていく
+                        </h2>
+                        <p class="case02__text">
+                            段階的に1.4rem〜2remまでの文字サイズがブラウザ幅によって可変されていく
+                        </p>
+                    </div>
+                    <div class="case02__wrap">
+                        <h2 class="case02__title">
+                            小見出し2.4rem〜3.2remまで可変されていく
+                        </h2>
+                        <p class="case02__text">
+                            段階的に1.4rem〜2remまでの文字サイズがブラウザ幅によって可変されていく
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+<style lang="scss">
+    .case01 {
+        // case01 @mediaを利用して、.case-wrapの背景を塗りつぶす
+        // [Note] sampleではこのファイルに記載しますが、実運用は@mediaを全体のスタイルstyles.scssへ記載推奨です
+        & .case-wrap {
+            padding: 1rem;
+            border: solid 2px #53a993;
+            padding-bottom: 0;
+        }
+        // @mediaを利用して、.case-wrapの背景を塗りつぶす
+        @media screen and (max-width: 800px) {
+            & .case-wrap {
+                color: #fff;
+                background-color: #53a993;
+            }
+        }
+    }
+    .case02 {
+        &__flex {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        &__wrap {
+            flex-grow: 1;
+            padding: 1rem;
+        }
+        // clamp()を使って文字サイズを変更
+        // title → 2.4rem〜3.2rem の間で文字サイズを変更
+        // text → 1.4rem〜2rem の間で文字サイズを変更
+        // 🥷 できたあとは、mixinと合わせて clampや@mediaの設定を作る
+        &__title {
+            font-size: 15px;
+        }
+        @media screen and (max-width: 768px) {
+            &__title {
+                font-size: clamp(1.8rem, 2vw + 1rem, 4rem);
+            }
+        }
+        &__text {
+            font-size: 10px;
+        }
+        @media screen and (max-width: 768px) {
+            &__text {
+                font-size: clamp(1.8rem, 2vw + 1rem, 4rem);
+            }
+        }
+    }
+</style>

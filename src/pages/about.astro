@@ -1,0 +1,157 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import topImage from "../assets/sample03_02.jpg";
+---
+
+<Layout>
+    <main>
+        <section>
+            <h1 class="title">About Page</h1>
+            <div class="inner_wrap">
+                <picture>
+                    <Image src={topImage} alt={"トップイメージ"} />
+                </picture>
+                <section class="inner_text">
+                    <h3>Hi there! I'm <span>ECC太郎</span></h3>
+                    <p>
+                        大阪市在住のWebデザイナー。専門学校ではWebデザインを専攻し、卒業後は制作会社に勤務。UI/UX設計を中心に、さまざまな業種のWebサイトやアプリのデザインを手がけています。休日はカフェ巡りや美術館巡りが趣味。新しいツールやトレンドを取り入れながら、使いやすく美しいデザインを目指しています。
+                    </p>
+                </section>
+            </div>
+            <div class="content_wrap">
+                <section class="box" id="skill">
+                    <h3>スキル</h3>
+                    <ul>
+                        <li>Figma を用いたUI/UXデザイン</li>
+                        <li>アクセシビリティを考慮したデザイン設計</li>
+                        <li>
+                            ユーザーインタビュー・ペルソナ設計などのリサーチスキル
+                        </li>
+                    </ul>
+                </section>
+                <section class="box" id="sns">
+                    <h3>SNS</h3>
+                    <ul>
+                        <li><a href="">X - @towa0105</a></li>
+                        <li><a href="">note - towa0105</a></li>
+                        <li><a href="">github - towa0105</a></li>
+                    </ul>
+                </section>
+                <section class="box" id="personal">
+                    <h3>パーソナル</h3>
+                    <ul>
+                        <li>2022.04 箕面東高校入学</li>
+                        <li>2025.03 箕面東高校卒業</li>
+                        <li>2025.04 ECCコンピュータ専門学校入学</li>
+                        <li>2108.03 ECCコンピュータ専門学校卒業予定</li>
+                    </ul>
+                </section>
+            </div>
+        </section>
+    </main>
+</Layout>
+<style lang="scss">
+    main {
+        padding: 24px;
+    }
+    .title {
+        font-size: 24px;
+        margin-bottom: 4px;
+        padding-bottom: 10px;
+    }
+    img {
+        width: 100%;
+        height: 482px;
+        object-fit: cover;
+    }
+    .inner_wrap {
+        position: relative;
+        .inner_text {
+            // padding: 10px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            // max-width: 430px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h3 {
+                font-size: 40px;
+                border-bottom: solid #fff 2px;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                text-align: start;
+                color: #fff;
+                span {
+                    color: #87f6d7;
+                }
+            }
+            p {
+                font-size: 10px;
+                text-align: start;
+                color: #fff;
+                max-width: 430px;
+            }
+        }
+    }
+    .box {
+        border: transparent 1px solid;
+        padding: 10px;
+        min-height: 200px;
+        min-width: 300px;
+        box-shadow: 0 0 3px#0003;
+        border-radius: 4px;
+        flex-grow: 1.5;
+        flex-basis: 30%;
+        line-height: 35px;
+        h3 {
+            font-size: 18px;
+        }
+        li {
+            font-size: 16px;
+        }
+    }
+    .content_wrap {
+        margin: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    #skill {
+        &:hover {
+            border: 1px solid #1deeb4;
+            transition: 0.3s;
+
+            h3 {
+                color: #1deeb4;
+                transition: 0.3s;
+            }
+        }
+    }
+    #sns {
+        &:hover {
+            border: 1px solid rgb(29, 133, 255);
+            transition: 0.3s;
+
+            h3 {
+                color: rgb(29, 133, 255);
+                transition: 0.3s;
+            }
+        }
+    }
+    #personal {
+        &:hover {
+            border: 1px solid rgb(238, 29, 87);
+            transition: 0.3s;
+
+            h3 {
+                color: rgb(238, 29, 87);
+                transition: 0.3s;
+            }
+        }
+    }
+</style>

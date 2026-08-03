@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<style lang="scss">
+    .code {
+        border: solid 1px #eaeaea;
+        padding: 1rem;
+        margin: 2rem 0;
+    }
+    .noteWrap {
+        margin: 2rem 0;
+        ul {
+            list-style: disc;
+            margin-left: 4rem;
+        }
+    }
+    .case02 {
+        .btn {
+            border: solid 1px #efefef;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 0.8rem 1.4rem;
+            &.ok {
+                background-color: #1361d7;
+            }
+            &.ng {
+                background-color: tomato;
+            }
+
+            &:hover {
+                color: #fff;
+                background-color: #bababa;
+            }
+        }
+    }
+
+    .case03 {
+        .change-btn {
+            width: 40px;
+            height: 40px;
+            border: solid #bababa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .border {
+                display: block;
+                width: 90%;
+                height: 3px;
+                background-color: #1361d7;
+                &.on {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+</style>
+
+<Layout pageTitle="Sample_j01 - javaScriptの記述">
+    <main>
+        <section class="sampleHeader">
+            <h2>sample_j01 - javaScriptの記述場所と基本</h2>
+            <p></p>
+        </section>
+
+        <div class="sampleContent">
+            <section class="content">
+                <h3>case01 jsの書く場所</h3>
+                <p>
+                    JavaScriptは
+                    script要素で記載するか、importで読み込むことが可能です
+                </p>
+                <ul>
+                    <li>Astroファイル内にscript is:inlineで書く</li>
+                    <li>importして読み込む</li>
+                    <li>publicにファイルを配置して読み込む</li>
+                </ul>
+                <p>
+                    まずは、script要素でis:inlineで書き始めましょう<br />
+                    consoleでブラウザでの画面を確認
+                </p>
+            </section>
+
+            <section class="content case02">
+                <h3>case02 イベントリスナーの復習</h3>
+                <p>
+                    addEventListenerを使ってクリックイベントを行う。
+                    ブラウザのコンソール画面に hello と表示
+                </p>
+
+                <button class="btn"><p class="btn_text">完了</p></button>
+            </section>
+
+            <section class="content case03">
+                <h3>case03 クラスの付与</h3>
+                <p>クラス名の付け替えを行いましょう</p>
+                <div class="code">
+                    <code>Element.classList.[プロパティ名]</code>
+                </div>
+                <h4>classListのプロパティ</h4>
+                <p>
+                    classListを使用してclass属性に対して変更を行い、動作と合わせて見た目を変更することが可能です
+                </p>
+                <div class="noteWrap">
+                    <ul>
+                        <li>add</li>
+                        <li>remove</li>
+                        <li>contain</li>
+                        <li>toggle</li>
+                        <li>replace</li>
+                    </ul>
+                </div>
+
+                <button class="change-btn">
+                    <span class="border"></span>
+                </button>
+            </section>
+        </div>
+    </main>
+</Layout>
+<script is:inline>
+    // console.log("aaa");
+    const btn = document.querySelector(".btn");
+    const changeBtn = document.querySelector(".change-btn");
+    const border = document.querySelector(".border");
+    let text = document.querySelector(".btn_text");
+
+    btn.addEventListener("click", () => {
+        if (btn.classList.contains("ok")) {
+            console.log("okいるよ");
+            btn.classList.remove("ok");
+            text.textContent = "完了";
+        } else {
+            console.log("okいないよ");
+            btn.classList.add("ok");
+            text.textContent = "キャンセル";
+        }
+    });
+    changeBtn.addEventListener("click", () => {
+        border.classList.toggle("on");
+    });
+</script>

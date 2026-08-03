@@ -1,0 +1,102 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<style lang="scss"></style>
+<Layout pageTitle="Sample_s01 - Sassの基本記法">
+    <main>
+        <h2>sample_s01 - Sassの基本記法</h2>
+        <p>Sassを使用して基本的な記述方法を行うサンプル</p>
+
+        <div class="sampleContent">
+            <section class="content">
+                <h3>case01 Sass プロパティのネストと変数</h3>
+
+                <div class="practiceWrap case01">
+                    <h3 class="case01__title">case01 - プロパティのネスト</h3>
+
+                    <h4 class="case01__title">topicTitle</h4>
+                    <p class="case01__text">topicTitleのサンプル段落です。</p>
+
+                    <h4 class="case01__title">topicTitle</h4>
+                    <p class="case01__text">topicTitleのサンプル段落です。</p>
+                </div>
+            </section>
+
+            <section class="content">
+                <h3>case02 - 変数の基本</h3>
+                <div class="practiceWrap case02">
+                    <h3>変数を使ったスタイル管理</h3>
+
+                    <p>
+                        このエリアでは、Sassの変数を使って余白やカラーを統一しています。
+                    </p>
+
+                    <p>
+                        同じ値を繰り返し使う場合でも、変数を使うことで一括管理が可能になります。
+                    </p>
+
+                    <ul>
+                        <li>余白はすべて同じ変数を使用</li>
+                        <li>色も変数で統一</li>
+                        <li>修正は1か所で完結</li>
+                        <li>デザイン変更にも強い</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content">
+                <h3>case03 - 変数のスコープ</h3>
+
+                <div class="practiceWrap case03">
+                    <h3>スコープ内の変数</h3>
+
+                    <p>
+                        このエリアでは、ローカルで定義した変数を使用しています。
+                    </p>
+                </div>
+
+                <div class="practiceWrap case03 outside">
+                    <h3>スコープ外のエリア</h3>
+
+                    <p>こちらは別のエリアです。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+<style lang="scss">
+    $titleColor: tomato;
+    $boxWrap: 20px;
+    .case01 {
+        &__title {
+            color: $titleColor;
+        }
+        &__text {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin: 1rem 0;
+        }
+        // h3 {
+        //     color: tomato;
+        // }
+        // & h4 {
+        // }
+    }
+    .case02 {
+        h3 {
+            color: $titleColor;
+        }
+        ul {
+            border: solid 1px tomato;
+            padding: $boxWrap;
+        }
+    }
+    $良い感じの色: skyblue;
+    .case03 {
+        h3 {
+            color: $良い感じの色;
+        }
+        background-image: url(../../assets/sample05_noimage.jpg);
+    }
+</style>
