@@ -1,17 +1,101 @@
 ---
-
+import Image from "astro/components/Image.astro";
+import thumbNoImage from "../../assets/sample05_noimage.jpg";
+import Layout from "../layouts/Layout.astro";
+import Samples from "../components/Samples.astro";
+import { samples } from "../scripts/sample_date.js";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>細川永遠portfolio</h1>
-	</body>
-</html>
+<Layout pageTitle="授業サンプルページ一覧">
+	<main>
+		<section class="section">
+			<div class="section-heading">
+				<div class="section-heading__main">
+					<h2 class="title">Samples page</h2>
+					<p>授業中のサンプルファイルを置くページ</p>
+				</div>
+				<div class="section-heading__aside">
+					<div
+						class="filter"
+						role="group"
+						aria-label="カテゴリーフィルタ"
+					>
+						<ul class="filter__list">
+							<li class="filter__item">
+								<button
+									class="filter__button filter__button--active"
+									data-filter="all">ALL</button
+								>
+							</li>
+							<li class="filter__item">
+								<button
+									class="filter__button"
+									data-filter="astro">Astro</button
+								>
+							</li>
+							<li class="filter__item">
+								<button
+									class="filter__button"
+									data-filter="sass">Sass</button
+								>
+							</li>
+							<li class="filter__item">
+								<button class="filter__button" data-filter="js"
+									>Js</button
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="wrap">
+			<Samples samples={samples} />
+		</div>
+	</main>
+</Layout>
+
+<style lang="scss">
+	.filter {
+		&__list {
+			display: flex;
+			gap: 1.6rem;
+		}
+		&__item {
+		}
+		&__button {
+			// @include mixin.tagColor();
+			@include mixin.filterBtn();
+			&--active {
+				color: #fff;
+				background-color: #444;
+			}
+			&[data-filter="astro"] {
+				// @include mixin.tagColor(var.$color-astro);
+				@include mixin.filterBtn(var.$color-astro);
+			}
+			&--active[data-filter="astro"] {
+				color: #fff;
+				background-color: var.$color-astro;
+			}
+			&[data-filter="sass"] {
+				// @include mixin.tagColor(var.$color-sass);
+				@include mixin.filterBtn(var.$color-sass);
+			}
+			&--active[data-filter="sass"] {
+				color: #fff;
+				background-color: var.$color-sass;
+			}
+			&[data-filter="js"] {
+				// @include mixin.tagColor(var.$color-js);
+				@include mixin.filterBtn(var.$color-js);
+			}
+			&--active[data-filter="js"] {
+				color: #fff;
+				background-color: var.$color-js;
+			}
+		}
+	}
+</style>
+<script src="/js/filter.js" is:inline></script>

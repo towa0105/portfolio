@@ -1,7 +1,7 @@
 ---
 import Image from "astro/components/Image.astro";
 import thumbNoImage from "../assets/sample05_noimage.jpg";
-const { title, description, tag, pageURL } = Astro.props;
+const { title, description, tag, pageURL, img } = Astro.props;
 // const
 console.log(tag);
 ---
@@ -9,7 +9,7 @@ console.log(tag);
 <article class="thumb" data-category={tag}>
     <a href={pageURL} data-test={title}>
         <picture class="thumb__image">
-            <Image src={thumbNoImage} alt="No Image" />
+            <Image src={img ? img : thumbNoImage} alt="No Image" />
         </picture>
     </a>
     <div class="thumb__body">
